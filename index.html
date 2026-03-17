@@ -1,29 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Оксана Миру — практикующий психолог и гипнолог в Европе и Азии. Помогаю выйти из тревоги и выгорания. Онлайн-консультации." />
-  <title>Оксана Миру — Психолог и гипнолог | PsyFusions</title>
+  <title>Оксана Миру — Психолог и гипнолог онлайн</title>
+  <meta name="description" content="Психолог и гипнолог Оксана Миру — работаю с тревогой, стрессом и эмоциональным выгоранием. Онлайн-сессии на русском языке. Первая встреча — бесплатно." />
+  <meta name="keywords" content="психолог онлайн, гипноз, тревога, стресс, выгорание, психотерапия" />
+  <meta property="og:title" content="Оксана Миру — Психолог и гипнолог" />
+  <meta property="og:description" content="Работаю с тревогой, стрессом и эмоциональным выгоранием. Онлайн-сессии на русском языке." />
+  <meta property="og:type" content="website" />
 
-  <!-- Tailwind CDN v3 -->
+  <!-- Tailwind CSS v3 CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            brand: {
-              primary:   '#3D4435',
-              secondary: '#F4F5F0',
-              accent:    '#BC6C25',
-              paper:     '#FDFCF9',
-              ink:       '#1C1F1A',
-            }
+            'brand-primary':   '#3D4435',
+            'brand-secondary': '#F4F5F0',
+            'brand-accent':    '#BC6C25',
+            'brand-paper':     '#FDFCF9',
+            'brand-ink':       '#1C1F1A',
           },
           fontFamily: {
             serif: ['Georgia', '"Times New Roman"', 'serif'],
-          }
+          },
         }
       }
     }
@@ -31,497 +33,838 @@
 
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="bg-brand-paper text-brand-ink scroll-smooth">
+<body class="bg-brand-paper text-brand-ink font-sans antialiased">
 
-  <!-- Grain overlay -->
-  <div class="grain-texture fixed inset-0 z-[100] pointer-events-none"></div>
+  <!-- Grain texture overlay -->
+  <div class="grain-texture fixed inset-0 w-full h-full z-0 pointer-events-none"></div>
 
-  <!-- ═══════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════
        NAVBAR
-  ═══════════════════════════════════════════════════════════ -->
-  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-8">
-    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+  ═══════════════════════════════════════════════════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="padding-top:2rem;padding-bottom:2rem;">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
 
-      <a href="#" class="flex items-center gap-2">
-        <div class="w-10 h-10 bg-brand-primary rounded-xl flex items-center justify-center text-white font-serif text-xl">P</div>
-        <span class="text-xl font-serif tracking-tight text-brand-primary">PsyFusions</span>
-      </a>
+      <!-- Logo -->
+      <a href="#" class="font-serif text-brand-primary text-xl tracking-tight">Оксана Миру</a>
 
-      <!-- Desktop -->
-      <div class="hidden md:flex items-center gap-8">
-        <a href="#methodology" class="nav-link">Методика</a>
-        <a href="#diagnosis"   class="nav-link">Диагностика</a>
-        <a href="#requests"    class="nav-link">С чем работаю</a>
-        <a href="#about"       class="nav-link">Обо мне</a>
-        <a href="#testimonials" class="nav-link">Отзывы</a>
-        <a href="#faq"         class="nav-link">FAQ</a>
-        <a href="#contact" class="bg-brand-primary text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-brand-accent transition-all">
-          Записаться
-        </a>
+      <!-- Desktop nav links -->
+      <div class="hidden lg:flex items-center gap-10">
+        <a href="#requests"    class="nav-link" onclick="closeMobileMenu()">С чем работаю</a>
+        <a href="#about"       class="nav-link" onclick="closeMobileMenu()">Обо мне</a>
+        <a href="#prices"      class="nav-link" onclick="closeMobileMenu()">Стоимость</a>
+        <a href="#faq"         class="nav-link" onclick="closeMobileMenu()">FAQ</a>
       </div>
 
-      <!-- Mobile toggle -->
-      <button id="menu-toggle" class="md:hidden text-brand-primary p-1">
-        <svg id="icon-open"  width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-        <svg id="icon-close" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="hidden"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      <!-- Desktop CTA -->
+      <div class="hidden lg:block">
+        <button onclick="openQuizModal()" class="btn-primary text-xs">Записаться</button>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="menu-toggle" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-brand-secondary" aria-label="Меню">
+        <svg id="icon-open"  width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6"  x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg id="icon-close" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="hidden"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
 
     <!-- Mobile menu -->
-    <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-brand-paper border-b border-stone-100 px-6 py-8">
-      <div class="flex flex-col gap-6">
-        <a href="#methodology"  class="text-lg font-serif text-brand-primary" onclick="closeMobileMenu()">Методика</a>
-        <a href="#diagnosis"    class="text-lg font-serif text-brand-primary" onclick="closeMobileMenu()">Диагностика</a>
-        <a href="#requests"     class="text-lg font-serif text-brand-primary" onclick="closeMobileMenu()">С чем работаю</a>
-        <a href="#about"        class="text-lg font-serif text-brand-primary" onclick="closeMobileMenu()">Обо мне</a>
-        <a href="#testimonials" class="text-lg font-serif text-brand-primary" onclick="closeMobileMenu()">Отзывы</a>
-        <a href="#faq"          class="text-lg font-serif text-brand-primary" onclick="closeMobileMenu()">FAQ</a>
-        <a href="#contact"      class="text-lg font-serif text-brand-primary" onclick="closeMobileMenu()">Контакты</a>
+    <div id="mobile-menu" class="hidden lg:hidden bg-brand-paper/95 backdrop-blur-md border-t border-stone-100 mt-4">
+      <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-5">
+        <a href="#requests"   class="nav-link" onclick="closeMobileMenu()">С чем работаю</a>
+        <a href="#about"      class="nav-link" onclick="closeMobileMenu()">Обо мне</a>
+        <a href="#prices"     class="nav-link" onclick="closeMobileMenu()">Стоимость</a>
+        <a href="#faq"        class="nav-link" onclick="closeMobileMenu()">FAQ</a>
+        <button onclick="openQuizModal(); closeMobileMenu();" class="btn-primary text-xs text-center mt-2">Записаться</button>
       </div>
     </div>
   </nav>
 
-  <!-- ═══════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════
        HERO
-  ═══════════════════════════════════════════════════════════ -->
-  <section class="relative min-h-screen flex items-center pt-32 pb-24 overflow-hidden">
-    <!-- Decorative blobs -->
-    <div class="absolute top-[-10%] right-[-5%] w-[55%] h-[80%] bg-brand-secondary/60 blob-shape blur-3xl z-0"></div>
-    <div class="absolute bottom-[-10%] left-[-5%] w-[40%] h-[60%] bg-brand-accent/5 blob-shape blur-3xl z-0"></div>
+  ═══════════════════════════════════════════════════════ -->
+  <section id="hero" class="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden">
 
-    <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <!-- Background blob -->
+    <div class="blob-shape absolute -top-40 -right-40 w-[600px] h-[600px] bg-brand-secondary opacity-40 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 w-full">
       <div class="grid lg:grid-cols-2 gap-16 items-center">
 
-        <!-- Text -->
+        <!-- Left: text -->
         <div>
-          <div class="flex items-center gap-4 mb-8">
-            <div class="w-12 h-[1px] bg-brand-accent"></div>
-            <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-brand-accent">Оксана Миру • Психолог • Гипнолог</span>
-          </div>
+          <span class="section-label">Психолог · Гипнолог · Онлайн</span>
 
-          <h1 class="text-5xl md:text-7xl font-serif font-light leading-[0.95] text-brand-primary mb-10">
-            Оксана Миру,<br>
-            <span class="italic text-brand-accent">Психолог и гипнолог</span>
+          <h1 class="font-serif text-brand-primary leading-tight mb-3" style="font-size: clamp(2.8rem, 7vw, 5.5rem);">
+            Из тревоги —<br>к <em class="not-italic text-brand-accent">спокойствию</em>
           </h1>
 
-          <p class="text-xl text-stone-600 mb-12 leading-relaxed">
-            Практикующий психолог в Европе и Азии. Помогаю экспертам и предпринимателям выйти из состояния тревоги и выгорания к устойчивому спокойствию через работу с подсознанием.
+          <p class="text-stone-500 font-serif text-xl mb-6">— Оксана Миру</p>
+
+          <p class="text-stone-500 leading-relaxed mb-10 max-w-lg text-base">
+            Работаю с тревогой, стрессом и эмоциональным выгоранием. Помогаю найти внутреннюю опору и вернуть ощущение себя — мягко и без давления. Онлайн-сессии на русском языке.
           </p>
 
           <!-- Stats -->
-          <div class="flex flex-wrap gap-8 mb-12">
-            <div class="flex items-center gap-3">
-              <div class="text-3xl font-serif text-brand-primary">500+</div>
-              <div class="text-[10px] text-stone-400 uppercase tracking-widest leading-tight font-bold">Часов<br>практики</div>
+          <div class="flex flex-wrap gap-6 mb-10">
+            <div>
+              <div class="font-serif text-3xl text-brand-primary font-bold">200+</div>
+              <div class="text-xs text-stone-400 uppercase tracking-widest mt-1">клиентов</div>
             </div>
-            <div class="w-[1px] h-10 bg-stone-200"></div>
-            <div class="flex items-center gap-3">
-              <div class="text-3xl font-serif text-brand-primary">100%</div>
-              <div class="text-[10px] text-stone-400 uppercase tracking-widest leading-tight font-bold">Конфиден-<br>циальность</div>
+            <div class="w-px bg-stone-200"></div>
+            <div>
+              <div class="font-serif text-3xl text-brand-primary font-bold">5 лет</div>
+              <div class="text-xs text-stone-400 uppercase tracking-widest mt-1">практики</div>
+            </div>
+            <div class="w-px bg-stone-200"></div>
+            <div>
+              <div class="font-serif text-3xl text-brand-primary font-bold">15 мин</div>
+              <div class="text-xs text-stone-400 uppercase tracking-widest mt-1">встреча бесплатно</div>
             </div>
           </div>
 
-          <!-- CTA buttons -->
-          <div class="flex flex-col sm:flex-row gap-4">
-            <button onclick="openQuizModal()" class="btn-primary flex items-center justify-center gap-3">
-              Пройти диагностику тревожности
-              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <!-- Primary CTA -->
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
+            <button onclick="openQuizModal()" class="btn-primary">
+              Пройти бесплатную диагностику
             </button>
-            <a href="#contact" class="btn-secondary flex items-center justify-center gap-3">
-              Бесплатная встреча (15 мин)
-              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
           </div>
 
-          <p class="mt-8 text-[10px] text-stone-400 uppercase tracking-widest font-bold">
-            <span class="text-brand-accent">●</span> Осталось 2 места на этой неделе
+          <!-- Secondary CTA as text link -->
+          <a href="#contact" class="text-sm text-stone-400 hover:text-brand-accent transition-colors underline underline-offset-4">
+            или записаться на бесплатную встречу →
+          </a>
+
+          <!-- Urgency note -->
+          <p class="mt-6 text-xs text-brand-accent font-bold uppercase tracking-widest flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-brand-accent animate-pulse inline-block"></span>
+            Осталось 2 места на этой неделе
           </p>
         </div>
 
-        <!-- Photo -->
-        <div class="relative hidden lg:block">
-          <div class="absolute inset-0 bg-brand-secondary blob-shape translate-x-6 translate-y-6 -z-10"></div>
+        <!-- Right: photo — visible on both mobile and desktop -->
+        <div class="flex justify-center lg:justify-end">
+          <div class="relative">
+            <!-- Decorative bg shape -->
+            <div class="absolute inset-0 bg-brand-secondary rounded-[100px] transform rotate-3 scale-105 opacity-60"></div>
+            <img
+              src="assets/images/oksana.png"
+              alt="Оксана Миру — психолог и гипнолог"
+              class="relative rounded-[100px] w-full max-w-sm md:max-w-md object-cover shadow-2xl"
+              style="aspect-ratio: 3/4; object-fit: cover;"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <!-- Fallback placeholder when image not found -->
+            <div class="relative rounded-[100px] w-full max-w-sm md:max-w-md bg-brand-secondary items-center justify-center text-brand-primary/30 font-serif text-lg text-center p-20" style="aspect-ratio:3/4; display:none;">
+              Фото<br>Оксаны
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       REQUESTS — С чем работаю
+  ═══════════════════════════════════════════════════════ -->
+  <section id="requests" class="py-24 bg-brand-secondary/40">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="max-w-xl mb-14">
+        <span class="section-label">С чем работаю</span>
+        <h2 class="section-title mb-4">Если узнаёте<br>себя в этом...</h2>
+        <p class="text-stone-500 leading-relaxed">Многие из моих клиентов приходят с похожими запросами. Узнаёте себя — значит, вы пришли по адресу.</p>
+      </div>
+
+      <!-- 2-column grid, horizontal layout cards (icon + text side by side) -->
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <div class="card flex gap-6 items-start">
+          <div class="icon-box bg-brand-secondary flex-shrink-0">
+            <svg width="24" height="24" fill="none" stroke="#3D4435" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-serif text-xl text-brand-primary mb-2">Тревога и страхи</h3>
+            <p class="text-stone-500 leading-relaxed text-sm">Постоянное беспокойство, панические атаки, страх за будущее — когда тревога мешает жить и принимать решения. Вы устали бояться, но не знаете, как остановить этот поток мыслей.</p>
+          </div>
+        </div>
+
+        <div class="card flex gap-6 items-start">
+          <div class="icon-box bg-brand-secondary flex-shrink-0">
+            <svg width="24" height="24" fill="none" stroke="#3D4435" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <div>
+            <h3 class="font-serif text-xl text-brand-primary mb-2">Выгорание и усталость</h3>
+            <p class="text-stone-500 leading-relaxed text-sm">Ощущение, что силы кончились, ничего не хочется, и даже отдых не помогает восстановиться. Работа, которая раньше приносила радость, теперь кажется бременем.</p>
+          </div>
+        </div>
+
+        <div class="card flex gap-6 items-start">
+          <div class="icon-box bg-brand-secondary flex-shrink-0">
+            <svg width="24" height="24" fill="none" stroke="#3D4435" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <h3 class="font-serif text-xl text-brand-primary mb-2">Отношения и границы</h3>
+            <p class="text-stone-500 leading-relaxed text-sm">Сложности в отношениях, неумение говорить «нет», зависимость от чужого мнения, одиночество в паре или, наоборот, страх близости.</p>
+          </div>
+        </div>
+
+        <div class="card flex gap-6 items-start">
+          <div class="icon-box bg-brand-secondary flex-shrink-0">
+            <svg width="24" height="24" fill="none" stroke="#3D4435" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div>
+            <h3 class="font-serif text-xl text-brand-primary mb-2">Кризис и потеря смысла</h3>
+            <p class="text-stone-500 leading-relaxed text-sm">Ощущение, что жизнь идёт «не туда», внутренняя пустота, поиск себя после важных перемен — развода, потери, смены профессии.</p>
+          </div>
+        </div>
+
+        <div class="card flex gap-6 items-start">
+          <div class="icon-box bg-brand-secondary flex-shrink-0">
+            <svg width="24" height="24" fill="none" stroke="#3D4435" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-serif text-xl text-brand-primary mb-2">Самооценка и уверенность</h3>
+            <p class="text-stone-500 leading-relaxed text-sm">Синдром самозванца, страх оценки, постоянная самокритика — когда достижения не радуют и сложно поверить в собственную ценность.</p>
+          </div>
+        </div>
+
+        <div class="card flex gap-6 items-start">
+          <div class="icon-box bg-brand-secondary flex-shrink-0">
+            <svg width="24" height="24" fill="none" stroke="#3D4435" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div>
+            <h3 class="font-serif text-xl text-brand-primary mb-2">Эмиграция и адаптация</h3>
+            <p class="text-stone-500 leading-relaxed text-sm">Стресс от переезда, ощущение «чужого», тоска по дому, трудности с интеграцией и поиском себя в новой культуре и среде.</p>
+          </div>
+        </div>
+
+        <div class="card flex gap-6 items-start">
+          <div class="icon-box bg-brand-secondary flex-shrink-0">
+            <svg width="24" height="24" fill="none" stroke="#3D4435" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div>
+            <h3 class="font-serif text-xl text-brand-primary mb-2">Психосоматика и тело</h3>
+            <p class="text-stone-500 leading-relaxed text-sm">Когда стресс «выражается» физически: бессонница, хронические зажимы, головные боли — и тело сигнализирует о том, что хочет душа.</p>
+          </div>
+        </div>
+
+        <div class="card flex gap-6 items-start">
+          <div class="icon-box bg-brand-secondary flex-shrink-0">
+            <svg width="24" height="24" fill="none" stroke="#3D4435" stroke-width="1.5" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div>
+            <h3 class="font-serif text-xl text-brand-primary mb-2">Изменения и личный рост</h3>
+            <p class="text-stone-500 leading-relaxed text-sm">Желание перемен без понимания, как начать. Прокрастинация, страх неудачи, ограничивающие убеждения — когда вы знаете «куда», но не можете сдвинуться.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       ABOUT
+  ═══════════════════════════════════════════════════════ -->
+  <section id="about" class="py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+        <!-- Left: photo -->
+        <div class="relative">
+          <div class="absolute -top-6 -left-6 w-48 h-48 bg-brand-secondary rounded-full opacity-50 pointer-events-none"></div>
           <img
             src="assets/images/oksana.png"
-            alt="Оксана Миру — психолог и гипнолог"
-            class="w-full max-w-md mx-auto object-cover rounded-[60px] shadow-2xl"
+            alt="Оксана Миру"
+            class="relative rounded-[60px] w-full max-w-md object-cover shadow-xl"
+            style="aspect-ratio: 4/5; object-fit: cover;"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
           />
+          <div class="relative rounded-[60px] w-full max-w-md bg-brand-secondary items-center justify-center text-brand-primary/30 font-serif text-lg text-center p-20" style="aspect-ratio:4/5; display:none;">
+            Фото Оксаны
+          </div>
+        </div>
+
+        <!-- Right: text -->
+        <div>
+          <span class="section-label">Обо мне</span>
+          <h2 class="section-title mb-8">Я знаю, как это —<br>когда внутри всё сжато</h2>
+
+          <p class="text-stone-600 leading-relaxed mb-5">
+            Я знаю, как это — когда внутри всё сжато, а снаружи надо держаться. Когда улыбаешься, но внутри пусто. Когда хочется изменений, но сил нет даже начать.
+          </p>
+          <p class="text-stone-600 leading-relaxed mb-5">
+            Я пришла в психологию не случайно — через собственный опыт кризиса, эмиграции и поиска себя. Именно поэтому я понимаю моих клиентов не только профессионально, но и по-человечески.
+          </p>
+          <p class="text-stone-600 leading-relaxed mb-10">
+            Сегодня я работаю с русскоязычными людьми по всему миру — мягко, без осуждения, с глубоким уважением к вашей истории и вашему темпу.
+          </p>
+
+          <!-- Value props grid -->
+          <div class="grid grid-cols-2 gap-4 mb-10">
+            <div class="bg-brand-secondary rounded-3xl p-6">
+              <div class="text-brand-accent text-2xl mb-2">✦</div>
+              <h4 class="font-serif text-brand-primary font-bold mb-1">Без осуждения</h4>
+              <p class="text-stone-500 text-sm">Безопасное пространство для любых тем и чувств</p>
+            </div>
+            <div class="bg-brand-secondary rounded-3xl p-6">
+              <div class="text-brand-accent text-2xl mb-2">✦</div>
+              <h4 class="font-serif text-brand-primary font-bold mb-1">Онлайн</h4>
+              <p class="text-stone-500 text-sm">Из любой точки мира, удобно и конфиденциально</p>
+            </div>
+            <div class="bg-brand-secondary rounded-3xl p-6">
+              <div class="text-brand-accent text-2xl mb-2">✦</div>
+              <h4 class="font-serif text-brand-primary font-bold mb-1">На русском</h4>
+              <p class="text-stone-500 text-sm">Работаю только на родном языке клиента</p>
+            </div>
+            <div class="bg-brand-secondary rounded-3xl p-6">
+              <div class="text-brand-accent text-2xl mb-2">✦</div>
+              <h4 class="font-serif text-brand-primary font-bold mb-1">Результат</h4>
+              <p class="text-stone-500 text-sm">Конкретные изменения, заметные с первых сессий</p>
+            </div>
+          </div>
+
+          <!-- Blockquote -->
+          <blockquote class="border-l-4 border-brand-accent pl-6 py-2">
+            <p class="font-serif text-xl text-brand-primary italic leading-relaxed">«Моя задача — не дать совет, а помочь вам услышать себя.»</p>
+          </blockquote>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════
+       CREDENTIALS — Образование и квалификация
+  ═══════════════════════════════════════════════════════ -->
+  <section id="credentials" class="py-24 bg-brand-secondary/40">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="max-w-xl mb-14">
+        <span class="section-label">Образование и квалификация</span>
+        <h2 class="section-title">Профессиональный<br>фундамент</h2>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-10">
+
+        <!-- Left: Timeline -->
+        <div>
+          <div class="relative">
+            <!-- Vertical connecting line -->
+            <div class="absolute left-5 top-6 bottom-6 w-px bg-stone-200"></div>
+
+            <!-- Item 1 -->
+            <!-- ЗАПОЛНИТЕ РЕАЛЬНЫМИ ДАННЫМИ -->
+            <div class="relative flex gap-6 mb-10">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-brand-primary flex items-center justify-center z-10">
+                <div class="w-3 h-3 rounded-full bg-white"></div>
+              </div>
+              <div>
+                <span class="text-xs font-bold text-brand-accent uppercase tracking-widest">20XX</span><!-- ЗАПОЛНИТЕ РЕАЛЬНЫМИ ДАННЫМИ -->
+                <h4 class="font-serif text-brand-primary text-lg font-bold mt-1 mb-1">Название университета / института</h4><!-- ЗАПОЛНИТЕ РЕАЛЬНЫМИ ДАННЫМИ -->
+                <p class="text-stone-500 text-sm leading-relaxed">Специализация / программа обучения. Описание полученных навыков и направления.</p><!-- ЗАПОЛНИТЕ РЕАЛЬНЫМИ ДАННЫМИ -->
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <!-- ЗАПОЛНИТЕ РЕАЛЬНЫМИ ДАННЫМИ -->
+            <div class="relative flex gap-6 mb-10">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-brand-accent flex items-center justify-center z-10">
+                <div class="w-3 h-3 rounded-full bg-white"></div>
+              </div>
+              <div>
+                <span class="text-xs font-bold text-brand-accent uppercase tracking-widest">20XX</span><!-- ЗАПОЛНИТЕ РЕАЛЬНЫМИ ДАННЫМИ -->
+                <h4 class="font-serif text-brand-primary text-lg font-bold mt-1 mb-1">Название курса / школы</h4><!-- ЗАПОЛНИТЕ РЕАЛЬНЫМИ ДАННЫМИ -->
+                <p class="text-stone-500 text-sm leading-relaxed">Направление обучения. Полученная квалификация или сертификат.</p><!-- ЗАПОЛНИТЕ РЕАЛЬНЫМИ ДАННЫМИ -->
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <!-- ЗАПОЛНИТЕ РЕАЛЬНЫМИ ДАННЫМИ -->
+            <div class="relative flex gap-6 mb-10">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-brand-primary flex items-center justify-center z-10">
+                <div class="w-3 h-3 rounded-full bg-white"></div>
+              </div>
+              <div>
+                <span class="text-xs font-bold text-brand-accent uppercase tracking-widest">20XX</span><!-- ЗАПОЛНИТЕ РЕАЛЬНЫМИ ДАННЫМИ -->
+                <h4 class="font-serif text-brand-primary text-lg font-bold mt-1 mb-1">Программа повышения квалификации</h4><!-- ЗАПОЛНИТЕ РЕАЛЬНЫМИ ДАННЫМИ -->
+                <p class="text-stone-500 text-sm leading-relaxed">Тематика и фокус обучения. Применяемые методы и подходы.</p><!-- ЗАПОЛНИТЕ РЕАЛЬНЫМИ ДАННЫМИ -->
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <!-- ЗАПОЛНИТЕ РЕАЛЬНЫМИ ДАННЫМИ -->
+            <div class="relative flex gap-6">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-brand-accent flex items-center justify-center z-10">
+                <div class="w-3 h-3 rounded-full bg-white"></div>
+              </div>
+              <div>
+                <span class="text-xs font-bold text-brand-accent uppercase tracking-widest">20XX</span><!-- ЗАПОЛНИТЕ РЕАЛЬНЫМИ ДАННЫМИ -->
+                <h4 class="font-serif text-brand-primary text-lg font-bold mt-1 mb-1">Сертификационная программа</h4><!-- ЗАПОЛНИТЕ РЕАЛЬНЫМИ ДАННЫМИ -->
+                <p class="text-stone-500 text-sm leading-relaxed">Направление специализации. Практические навыки и методы.</p><!-- ЗАПОЛНИТЕ РЕАЛЬНЫМИ ДАННЫМИ -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right: membership + practice cards -->
+        <div class="flex flex-col gap-6">
+
+          <!-- Memberships card (light) -->
+          <div class="card">
+            <h3 class="font-serif text-brand-primary text-xl font-bold mb-6">Членство и сертификаты</h3><!-- ЗАПОЛНИТЕ РЕАЛЬНЫМИ ДАННЫМИ -->
+            <ul class="space-y-4">
+              <li class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-brand-secondary flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg width="12" height="12" fill="none" stroke="#3D4435" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <span class="text-stone-600 text-sm leading-relaxed">Название профессиональной ассоциации или организации</span><!-- ЗАПОЛНИТЕ РЕАЛЬНЫМИ ДАННЫМИ -->
+              </li>
+              <li class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-brand-secondary flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg width="12" height="12" fill="none" stroke="#3D4435" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <span class="text-stone-600 text-sm leading-relaxed">Сертификат или диплом — наименование и год получения</span><!-- ЗАПОЛНИТЕ РЕАЛЬНЫМИ ДАННЫМИ -->
+              </li>
+              <li class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-brand-secondary flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg width="12" height="12" fill="none" stroke="#3D4435" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <span class="text-stone-600 text-sm leading-relaxed">Специализированный курс или программа переподготовки</span><!-- ЗАПОЛНИТЕ РЕАЛЬНЫМИ ДАННЫМИ -->
+              </li>
+              <li class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-brand-secondary flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg width="12" height="12" fill="none" stroke="#3D4435" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <span class="text-stone-600 text-sm leading-relaxed">Международная сертификация / аккредитация</span><!-- ЗАПОЛНИТЕ РЕАЛЬНЫМИ ДАННЫМИ -->
+              </li>
+            </ul>
+          </div>
+
+          <!-- Practice hours card (dark green) -->
+          <div class="rounded-[40px] bg-brand-primary p-10 text-white">
+            <div class="font-serif text-5xl text-brand-accent mb-3">500+</div>
+            <p class="font-serif text-white text-xl leading-relaxed mb-3">часов клиентской практики</p>
+            <p class="text-white/60 text-sm leading-relaxed italic">«Каждый клиент — это уникальная история. Моя задача — быть рядом и помочь найти путь именно для вас.»</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
        METHODOLOGY
-  ═══════════════════════════════════════════════════════════ -->
-  <section id="methodology" class="py-32 bg-white">
+  ═══════════════════════════════════════════════════════ -->
+  <section id="methodology" class="py-24">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="mb-16">
-        <span class="section-label">Моя методика</span>
-        <h2 class="section-title">Интегративный подход<br>к глубинной трансформации</h2>
+
+      <div class="max-w-xl mb-14">
+        <span class="section-label">Методология</span>
+        <h2 class="section-title">Как я работаю</h2>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="card hover:-translate-y-2">
-          <div class="icon-box bg-brand-secondary text-brand-primary mb-8">
-            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44l-3-7.5A2.5 2.5 0 0 1 6.5 8H9.5V2z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44l3-7.5A2.5 2.5 0 0 0 17.5 8H14.5V2z"/></svg>
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <!-- Card 1: Гипноз -->
+        <div class="card">
+          <div class="icon-box bg-brand-secondary mb-6">
+            <svg width="24" height="24" fill="none" stroke="#3D4435" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
           </div>
-          <h4 class="text-2xl font-serif mb-4 text-brand-primary">Гипноз и Транс</h4>
-          <p class="text-stone-500 leading-relaxed">Работа с подсознанием напрямую. Позволяет обойти критический фильтр ума и найти корень проблемы там, где логика бессильна.</p>
+          <h3 class="font-serif text-2xl text-brand-primary mb-4">Гипноз</h3>
+          <p class="text-stone-500 leading-relaxed text-sm">Мягкая работа с подсознанием — помогает снять глубинные блоки, страхи и ограничивающие убеждения. Клиент остаётся в полном сознании и контроле на протяжении всей сессии.</p>
         </div>
 
-        <div class="card bg-brand-primary border-none hover:-translate-y-2">
-          <div class="icon-box bg-white/10 text-brand-accent mb-8">
-            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+        <!-- Card 2: Арт-терапия (dark green highlight) -->
+        <div class="rounded-[40px] bg-brand-primary p-10 text-white relative overflow-hidden">
+          <div class="absolute -top-10 -right-10 w-40 h-40 bg-white/5 rounded-full pointer-events-none"></div>
+          <div class="icon-box bg-white/10 mb-6">
+            <svg width="24" height="24" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
           </div>
-          <h4 class="text-2xl font-serif mb-4 text-white">Арт-терапия</h4>
-          <p class="text-stone-300 leading-relaxed">Мягкий способ выразить то, что сложно облечь в слова. Помогает прожить подавленные эмоции через творчество.</p>
+          <h3 class="font-serif text-2xl text-white mb-4">Арт-терапия</h3>
+          <p class="text-white/70 leading-relaxed text-sm">Творческий подход к исследованию внутреннего мира. Через рисунок, образы и метафоры — туда, куда слова не добираются. Не нужно уметь рисовать.</p>
         </div>
 
-        <div class="card bg-brand-secondary border-none hover:-translate-y-2">
-          <div class="icon-box bg-white text-brand-primary mb-8 shadow-sm">
-            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        <!-- Card 3: Коучинг -->
+        <div class="card">
+          <div class="icon-box bg-brand-secondary mb-6">
+            <svg width="24" height="24" fill="none" stroke="#3D4435" stroke-width="1.5" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
           </div>
-          <h4 class="text-2xl font-serif mb-4 text-brand-primary">Коучинг</h4>
-          <p class="text-stone-500 leading-relaxed">Фокус на будущем и конкретных шагах. Когда состояние стабилизировано, мы строим новую стратегию жизни.</p>
+          <h3 class="font-serif text-2xl text-brand-primary mb-4">Коучинг</h3>
+          <p class="text-stone-500 leading-relaxed text-sm">Работа с целями, ценностями и ресурсами. Помогает выйти из точки застревания, расставить приоритеты и двигаться вперёд с ясностью и уверенностью.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       PROCESS
+  ═══════════════════════════════════════════════════════ -->
+  <section id="process" class="py-24 bg-brand-secondary/40">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="max-w-xl mb-14">
+        <span class="section-label">Как это работает</span>
+        <h2 class="section-title">Путь к изменениям</h2>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-10 items-start">
+
+        <!-- Left: 4 steps -->
+        <div class="space-y-6">
+
+          <div class="card flex gap-6 items-start">
+            <div class="w-12 h-12 rounded-2xl bg-brand-primary text-white flex items-center justify-center font-serif font-bold text-lg flex-shrink-0">1</div>
+            <div>
+              <h3 class="font-serif text-brand-primary text-xl font-bold mb-2">Знакомство</h3>
+              <p class="text-stone-500 text-sm leading-relaxed">Бесплатная 15-минутная встреча — познакомиться, задать вопросы и почувствовать, подходим ли мы друг другу. Без давления и обязательств.</p>
+            </div>
+          </div>
+
+          <div class="card flex gap-6 items-start">
+            <div class="w-12 h-12 rounded-2xl bg-brand-accent text-white flex items-center justify-center font-serif font-bold text-lg flex-shrink-0">2</div>
+            <div>
+              <h3 class="font-serif text-brand-primary text-xl font-bold mb-2">Диагностика</h3>
+              <p class="text-stone-500 text-sm leading-relaxed">Глубинное изучение вашей ситуации — выявляем корневые причины и намечаем индивидуальный маршрут работы.</p>
+            </div>
+          </div>
+
+          <div class="card flex gap-6 items-start">
+            <div class="w-12 h-12 rounded-2xl bg-brand-primary text-white flex items-center justify-center font-serif font-bold text-lg flex-shrink-0">3</div>
+            <div>
+              <h3 class="font-serif text-brand-primary text-xl font-bold mb-2">Трансформация</h3>
+              <p class="text-stone-500 text-sm leading-relaxed">Регулярные сессии с применением гипноза, арт-терапии и коучинга — там, где это нужно именно вам. Каждая встреча — шаг к изменениям.</p>
+            </div>
+          </div>
+
+          <div class="card flex gap-6 items-start">
+            <div class="w-12 h-12 rounded-2xl bg-brand-accent text-white flex items-center justify-center font-serif font-bold text-lg flex-shrink-0">4</div>
+            <div>
+              <h3 class="font-serif text-brand-primary text-xl font-bold mb-2">Закрепление результата</h3>
+              <p class="text-stone-500 text-sm leading-relaxed">Интеграция изменений в повседневную жизнь. Новые инструменты, внутренние опоры и навыки — с вами навсегда.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: 3 stat cards -->
+        <div class="grid gap-6">
+
+          <div class="card text-center py-10">
+            <div class="font-serif text-6xl text-brand-primary font-bold mb-2">200+</div>
+            <div class="text-xs text-stone-400 uppercase tracking-widest">клиентов прошли трансформацию</div>
+          </div>
+
+          <div class="card text-center py-10">
+            <div class="font-serif text-6xl text-brand-primary font-bold mb-2">5 лет</div>
+            <div class="text-xs text-stone-400 uppercase tracking-widest">клинической и частной практики</div>
+          </div>
+
+          <div class="rounded-[40px] bg-brand-accent p-10 text-white text-center">
+            <p class="font-serif text-xl italic leading-relaxed">«Изменения начинаются уже после первой сессии»</p>
+          </div>
+
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       DIAGNOSIS / QUIZ (inline)
-  ═══════════════════════════════════════════════════════════ -->
-  <section id="diagnosis" class="py-32 bg-brand-paper">
+  <!-- ═══════════════════════════════════════════════════════
+       TESTIMONIALS
+  ═══════════════════════════════════════════════════════ -->
+  <section id="testimonials" class="py-24">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="mb-16 text-center">
-        <span class="section-label">Тест</span>
-        <h2 class="section-title">Экспресс-диагностика<br>вашего состояния</h2>
+
+      <div class="max-w-xl mb-14">
+        <span class="section-label">Отзывы</span>
+        <h2 class="section-title">Что говорят<br>клиенты</h2>
       </div>
 
-      <!-- Inline quiz widget -->
-      <div class="max-w-2xl mx-auto bg-white rounded-[40px] p-8 md:p-12 shadow-2xl border border-stone-100 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-1 bg-brand-secondary">
-          <div id="quiz-progress" class="h-full bg-brand-accent transition-all duration-500" style="width:0%"></div>
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <div class="card">
+          <div class="flex gap-1 mb-6 text-brand-accent">★★★★★</div>
+          <p class="text-stone-600 leading-relaxed mb-8 italic">«После нескольких сессий с Оксаной я наконец-то перестала просыпаться в 3 ночи с паническими атаками. Я не верила, что это возможно — но это работает. Очень бережный и профессиональный подход.»</p>
+          <div>
+            <p class="font-bold text-brand-primary text-sm">Мария К.</p>
+            <p class="text-stone-400 text-xs mt-0.5">Берлин, Германия</p>
+          </div>
         </div>
-        <div id="quiz-content"></div>
+
+        <div class="card">
+          <div class="flex gap-1 mb-6 text-brand-accent">★★★★★</div>
+          <p class="text-stone-600 leading-relaxed mb-8 italic">«Я обратился к Оксане в период сильного выгорания — не мог работать, ничего не хотелось. Спустя 2 месяца я снова нахожу радость в своём деле. Работа с подсознанием через гипноз — это нечто особенное.»</p>
+          <div>
+            <p class="font-bold text-brand-primary text-sm">Алексей Р.</p>
+            <p class="text-stone-400 text-xs mt-0.5">Дубай, ОАЭ</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="flex gap-1 mb-6 text-brand-accent">★★★★★</div>
+          <p class="text-stone-600 leading-relaxed mb-8 italic">«После переезда в Нидерланды я чувствовала себя потерянной. Оксана помогла мне найти опору внутри себя, а не снаружи. Теперь я знаю, кто я и чего хочу. Это бесценно.»</p>
+          <div>
+            <p class="font-bold text-brand-primary text-sm">Наталья В.</p>
+            <p class="text-stone-400 text-xs mt-0.5">Амстердам, Нидерланды</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       REQUESTS
-  ═══════════════════════════════════════════════════════════ -->
-  <section id="requests" class="py-32 bg-white">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="mb-16 text-center">
-        <span class="section-label">Если вы чувствуете, что вам нужна поддержка — вы можете сделать первый шаг уже сейчас.</span>
-        <h2 class="section-title">В каких ситуациях<br>ко мне обращаются</h2>
+  <!-- ═══════════════════════════════════════════════════════
+       PRICES
+  ═══════════════════════════════════════════════════════ -->
+  <section id="prices" class="py-24 bg-brand-primary relative overflow-hidden">
+
+    <div class="blob-shape absolute -top-20 -right-20 w-96 h-96 bg-white/5 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+      <div class="max-w-xl mb-14">
+        <span class="section-label" style="color:#BC6C25;">Стоимость</span>
+        <h2 class="font-serif text-white leading-tight mb-4" style="font-size: clamp(2rem, 5vw, 3.75rem);">Выберите<br>свой формат</h2>
+        <p class="text-white/60 leading-relaxed">Начните с бесплатного знакомства — без обязательств и без давления.</p>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-        <div class="card p-8 group hover:border-brand-accent/30">
-          <div class="icon-box bg-brand-secondary text-stone-400 group-hover:text-brand-accent mb-6 transition-colors">
-            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <h4 class="text-xl font-serif mb-3 text-brand-primary">Тревожность</h4>
-          <p class="text-stone-500 text-sm leading-relaxed">Внутреннее напряжение и беспокойство.</p>
+        <!-- Card 1: Знакомство (free) -->
+        <div class="bg-white/10 rounded-[40px] p-8 border border-white/10 backdrop-blur-sm flex flex-col">
+          <div class="text-xs font-bold uppercase tracking-widest text-white/50 mb-4">Знакомство</div>
+          <div class="font-serif text-5xl text-white font-bold mb-1">0€</div>
+          <div class="text-white/50 text-xs mb-6">15 минут · бесплатно</div>
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex items-center gap-2 text-white/70 text-sm">
+              <svg width="14" height="14" fill="none" stroke="#BC6C25" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Знакомство и вопросы
+            </li>
+            <li class="flex items-center gap-2 text-white/70 text-sm">
+              <svg width="14" height="14" fill="none" stroke="#BC6C25" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Без обязательств
+            </li>
+            <li class="flex items-center gap-2 text-white/70 text-sm">
+              <svg width="14" height="14" fill="none" stroke="#BC6C25" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Онлайн, в Zoom
+            </li>
+          </ul>
+          <button onclick="openQuizModal()" class="w-full py-4 rounded-2xl border border-white/20 text-white text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-all">
+            Записаться
+          </button>
         </div>
 
-        <div class="card p-8 group hover:border-brand-accent/30">
-          <div class="icon-box bg-brand-secondary text-stone-400 group-hover:text-brand-accent mb-6 transition-colors">
-            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          </div>
-          <h4 class="text-xl font-serif mb-3 text-brand-primary">Выгорание</h4>
-          <p class="text-stone-500 text-sm leading-relaxed">Эмоциональное истощение и усталость.</p>
+        <!-- Card 2: Разовая сессия -->
+        <div class="bg-white/10 rounded-[40px] p-8 border border-white/10 backdrop-blur-sm flex flex-col">
+          <div class="text-xs font-bold uppercase tracking-widest text-white/50 mb-4">Разовая сессия</div>
+          <!-- ЗАМЕНИТЕ НА РЕАЛЬНУЮ ЦЕНУ -->
+          <div class="font-serif text-5xl text-white font-bold mb-1">XX€</div><!-- ЗАМЕНИТЕ НА РЕАЛЬНУЮ ЦЕНУ -->
+          <div class="text-white/50 text-xs mb-6">60 минут · разово</div>
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex items-center gap-2 text-white/70 text-sm">
+              <svg width="14" height="14" fill="none" stroke="#BC6C25" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Индивидуальная работа
+            </li>
+            <li class="flex items-center gap-2 text-white/70 text-sm">
+              <svg width="14" height="14" fill="none" stroke="#BC6C25" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Все методы
+            </li>
+            <li class="flex items-center gap-2 text-white/70 text-sm">
+              <svg width="14" height="14" fill="none" stroke="#BC6C25" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Запись сессии
+            </li>
+          </ul>
+          <button onclick="openQuizModal()" class="w-full py-4 rounded-2xl border border-white/20 text-white text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-all">
+            Записаться
+          </button>
         </div>
 
-        <div class="card p-8 group hover:border-brand-accent/30">
-          <div class="icon-box bg-brand-secondary text-stone-400 group-hover:text-brand-accent mb-6 transition-colors">
-            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </div>
-          <h4 class="text-xl font-serif mb-3 text-brand-primary">Отношения</h4>
-          <p class="text-stone-500 text-sm leading-relaxed">Сложности, разводы, расставания.</p>
+        <!-- Card 3: Пакет 4 сессии (highlighted with brand-accent) -->
+        <div class="rounded-[40px] p-8 relative overflow-hidden flex flex-col" style="background-color:#BC6C25;">
+          <!-- "Популярный" badge -->
+          <div class="absolute top-6 right-6 bg-white text-brand-accent text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">Популярный</div>
+          <div class="text-xs font-bold uppercase tracking-widest text-white/70 mb-4">Пакет 4 сессии</div>
+          <!-- ЗАМЕНИТЕ НА РЕАЛЬНУЮ ЦЕНУ -->
+          <div class="font-serif text-5xl text-white font-bold mb-1">XX€</div><!-- ЗАМЕНИТЕ НА РЕАЛЬНУЮ ЦЕНУ -->
+          <div class="text-white/70 text-xs mb-6">4 × 60 минут · экономия</div>
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex items-center gap-2 text-white text-sm">
+              <svg width="14" height="14" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              4 индивидуальных сессии
+            </li>
+            <li class="flex items-center gap-2 text-white text-sm">
+              <svg width="14" height="14" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Поддержка в чате
+            </li>
+            <li class="flex items-center gap-2 text-white text-sm">
+              <svg width="14" height="14" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Скидка vs разовой
+            </li>
+            <li class="flex items-center gap-2 text-white text-sm">
+              <svg width="14" height="14" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Домашние задания
+            </li>
+          </ul>
+          <button onclick="openQuizModal()" class="w-full py-4 rounded-2xl bg-white text-brand-accent text-xs font-bold uppercase tracking-widest hover:bg-brand-paper transition-all">
+            Выбрать
+          </button>
         </div>
 
-        <div class="card p-8 group hover:border-brand-accent/30">
-          <div class="icon-box bg-brand-secondary text-stone-400 group-hover:text-brand-accent mb-6 transition-colors">
-            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <h4 class="text-xl font-serif mb-3 text-brand-primary">Самооценка</h4>
-          <p class="text-stone-500 text-sm leading-relaxed">Поиск уверенности и ценности.</p>
-        </div>
-
-        <div class="card p-8 group hover:border-brand-accent/30">
-          <div class="icon-box bg-brand-secondary text-stone-400 group-hover:text-brand-accent mb-6 transition-colors">
-            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-          </div>
-          <h4 class="text-xl font-serif mb-3 text-brand-primary">Смыслы</h4>
-          <p class="text-stone-500 text-sm leading-relaxed">Чувство пустоты и поиск пути.</p>
-        </div>
-
-        <div class="card p-8 group hover:border-brand-accent/30">
-          <div class="icon-box bg-brand-secondary text-stone-400 group-hover:text-brand-accent mb-6 transition-colors">
-            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44l-3-7.5A2.5 2.5 0 0 1 6.5 8H9.5V2z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44l3-7.5A2.5 2.5 0 0 0 17.5 8H14.5V2z"/></svg>
-          </div>
-          <h4 class="text-xl font-serif mb-3 text-brand-primary">Психосоматика</h4>
-          <p class="text-stone-500 text-sm leading-relaxed">Телесные проявления эмоций.</p>
-        </div>
-
-        <div class="card p-8 group hover:border-brand-accent/30">
-          <div class="icon-box bg-brand-secondary text-stone-400 group-hover:text-brand-accent mb-6 transition-colors">
-            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <h4 class="text-xl font-serif mb-3 text-brand-primary">Кризисы</h4>
-          <p class="text-stone-500 text-sm leading-relaxed">Жизненные перемены и тупики.</p>
-        </div>
-
-        <div class="card p-8 group hover:border-brand-accent/30">
-          <div class="icon-box bg-brand-secondary text-stone-400 group-hover:text-brand-accent mb-6 transition-colors">
-            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <h4 class="text-xl font-serif mb-3 text-brand-primary">Поддержка</h4>
-          <p class="text-stone-500 text-sm leading-relaxed">Когда просто нужен бережный диалог.</p>
+        <!-- Card 4: Пакет 8 сессий -->
+        <div class="bg-white/10 rounded-[40px] p-8 border border-white/10 backdrop-blur-sm flex flex-col">
+          <div class="text-xs font-bold uppercase tracking-widest text-white/50 mb-4">Пакет 8 сессий</div>
+          <!-- ЗАМЕНИТЕ НА РЕАЛЬНУЮ ЦЕНУ -->
+          <div class="font-serif text-5xl text-white font-bold mb-1">XX€</div><!-- ЗАМЕНИТЕ НА РЕАЛЬНУЮ ЦЕНУ -->
+          <div class="text-white/50 text-xs mb-6">8 × 60 минут · трансформация</div>
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex items-center gap-2 text-white/70 text-sm">
+              <svg width="14" height="14" fill="none" stroke="#BC6C25" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              8 индивидуальных сессий
+            </li>
+            <li class="flex items-center gap-2 text-white/70 text-sm">
+              <svg width="14" height="14" fill="none" stroke="#BC6C25" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Поддержка в чате 24/7
+            </li>
+            <li class="flex items-center gap-2 text-white/70 text-sm">
+              <svg width="14" height="14" fill="none" stroke="#BC6C25" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Максимальная экономия
+            </li>
+            <li class="flex items-center gap-2 text-white/70 text-sm">
+              <svg width="14" height="14" fill="none" stroke="#BC6C25" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Полный курс работы
+            </li>
+          </ul>
+          <button onclick="openQuizModal()" class="w-full py-4 rounded-2xl border border-white/20 text-white text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-all">
+            Записаться
+          </button>
         </div>
 
       </div>
+
+      <p class="text-white/40 text-xs text-center mt-8">Оплата принимается в EUR, USD или RUB. Возможна оплата частями. По вопросам оплаты — напишите в мессенджер.</p>
+
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       ABOUT
-  ═══════════════════════════════════════════════════════════ -->
-  <section id="about" class="py-32 bg-brand-paper">
+  <!-- ═══════════════════════════════════════════════════════
+       DIAGNOSIS / QUIZ (inline)
+  ═══════════════════════════════════════════════════════ -->
+  <section id="diagnosis" class="py-24">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid lg:grid-cols-2 gap-16 items-center">
 
-        <!-- Photo -->
-        <div class="relative">
-          <div class="absolute inset-0 bg-brand-secondary/60 blob-shape -translate-x-4 translate-y-4 -z-10"></div>
-          <img
-            src="assets/images/oksana.png"
-            alt="Оксана Миру — психолог и гипнолог"
-            class="w-full max-w-sm mx-auto object-cover rounded-[60px] shadow-xl"
-          />
-        </div>
-
-        <!-- Text -->
+        <!-- Left: heading -->
         <div>
-          <div class="mb-12">
-            <span class="section-label">Обо мне</span>
-            <h2 class="section-title">Оксана Миру</h2>
-          </div>
-
-      <div class="space-y-8 text-stone-600 leading-relaxed">
-        <p class="text-2xl font-serif text-brand-primary">
-          Практикующий психолог и гипнолог в Европе и Азии.
-        </p>
-        <p class="text-lg">
-          Помогаю справляться с внутренними кризисами, тревожными состояниями и находить путь к себе через глубокую работу с подсознанием.
-        </p>
-        <p class="text-lg">
-          В своей работе я использую интегративный подход, включая гипнотерапию, арт-терапию и работу с подсознательными установками.
-        </p>
-
-        <div class="grid sm:grid-cols-2 gap-6 py-4">
-          <div class="flex items-start gap-4">
-            <div class="p-2 bg-brand-secondary rounded-lg text-brand-primary flex-shrink-0">
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
-            </div>
-            <div>
-              <span class="font-bold block text-brand-primary">Бережность</span>
-              <span class="text-sm">Работа в комфортном для вас темпе.</span>
-            </div>
-          </div>
-          <div class="flex items-start gap-4">
-            <div class="p-2 bg-brand-secondary rounded-lg text-brand-primary flex-shrink-0">
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            </div>
-            <div>
-              <span class="font-bold block text-brand-primary">Конфиденциальность</span>
-              <span class="text-sm">Полная безопасность ваших историй.</span>
-            </div>
-          </div>
+          <span class="section-label">Бесплатно</span>
+          <h2 class="section-title mb-6">Проверьте уровень тревожности прямо сейчас</h2>
+          <p class="text-stone-500 leading-relaxed mb-2">7 вопросов, 2 минуты — и вы узнаете, в каком состоянии сейчас ваша нервная система.</p>
+          <p class="text-stone-400 text-sm">Результат персональный. Никакие данные не сохраняются без вашего согласия.</p>
         </div>
 
-        <blockquote class="italic text-stone-500 border-l-2 border-brand-accent/40 pl-6 py-2 text-lg">
-          «Моя задача — создать безопасное пространство, где человек может понять причины своего состояния и найти внутренние ресурсы для изменений».
-        </blockquote>
-      </div>
-        </div><!-- end text -->
-      </div><!-- end grid -->
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════════
-       PROCESS
-  ═══════════════════════════════════════════════════════════ -->
-  <section id="process" class="py-32 bg-white">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid lg:grid-cols-2 gap-20 items-center">
-        <div class="order-2 lg:order-1">
-          <div class="mb-16">
-            <span class="section-label">Процесс</span>
-            <h2 class="section-title">Как проходит работа</h2>
-          </div>
-          <div class="space-y-12">
-            <div class="flex gap-8 group">
-              <span class="text-4xl font-serif text-stone-200 group-hover:text-brand-accent transition-colors">01</span>
-              <div>
-                <h4 class="text-xl font-serif mb-2 text-brand-primary">Знакомство</h4>
-                <p class="text-stone-500 leading-relaxed">Бесплатная 15-минутная встреча для обсуждения вашего запроса и понимания, подходим ли мы друг другу.</p>
-              </div>
-            </div>
-            <div class="flex gap-8 group">
-              <span class="text-4xl font-serif text-stone-200 group-hover:text-brand-accent transition-colors">02</span>
-              <div>
-                <h4 class="text-xl font-serif mb-2 text-brand-primary">Диагностика</h4>
-                <p class="text-stone-500 leading-relaxed">Первая полноценная сессия, где мы глубоко исследуем проблему и ставим цели терапии.</p>
-              </div>
-            </div>
-            <div class="flex gap-8 group">
-              <span class="text-4xl font-serif text-stone-200 group-hover:text-brand-accent transition-colors">03</span>
-              <div>
-                <h4 class="text-xl font-serif mb-2 text-brand-primary">Трансформация</h4>
-                <p class="text-stone-500 leading-relaxed">Основной этап работы с использованием гипноза, КПТ и других методов для достижения результата.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="order-1 lg:order-2">
-          <div class="bg-brand-secondary rounded-[60px] p-16 aspect-square flex items-center justify-center relative overflow-hidden">
-            <div class="grain-texture absolute inset-0 opacity-10"></div>
-            <p class="text-3xl md:text-4xl font-serif text-brand-primary italic leading-relaxed text-center relative z-10">
-              Глубоко.<br>Бережно.<br>По делу.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════════════════════
-       TESTIMONIALS
-  ═══════════════════════════════════════════════════════════ -->
-  <section id="testimonials" class="py-32 bg-brand-paper">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="mb-16 text-center">
-        <span class="section-label">Отзывы</span>
-        <h2 class="section-title">Истории изменений</h2>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8">
-
+        <!-- Right: quiz widget -->
         <div class="card">
-          <div class="flex gap-1 mb-6">
-            <svg width="14" height="14" fill="#BC6C25" stroke="#BC6C25" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="14" height="14" fill="#BC6C25" stroke="#BC6C25" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="14" height="14" fill="#BC6C25" stroke="#BC6C25" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="14" height="14" fill="#BC6C25" stroke="#BC6C25" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="14" height="14" fill="#BC6C25" stroke="#BC6C25" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <!-- Progress bar -->
+          <div class="w-full bg-stone-100 rounded-full h-1 mb-8 overflow-hidden">
+            <div id="quiz-progress" class="bg-brand-accent h-1 rounded-full transition-all duration-500" style="width:0%"></div>
           </div>
-          <p class="text-stone-600 italic mb-8 leading-relaxed">"Оксана помогла мне выйти из глубочайшего выгорания. После 5 сессий я снова почувствовала вкус к жизни и работе."</p>
-          <div class="flex items-center gap-4">
-            <div class="w-10 h-10 bg-brand-secondary rounded-full flex items-center justify-center text-brand-primary font-serif font-bold text-lg">М</div>
-            <span class="text-sm font-bold text-brand-primary">Мария, предприниматель</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="flex gap-1 mb-6">
-            <svg width="14" height="14" fill="#BC6C25" stroke="#BC6C25" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="14" height="14" fill="#BC6C25" stroke="#BC6C25" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="14" height="14" fill="#BC6C25" stroke="#BC6C25" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="14" height="14" fill="#BC6C25" stroke="#BC6C25" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="14" height="14" fill="#BC6C25" stroke="#BC6C25" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <p class="text-stone-600 italic mb-8 leading-relaxed">"Метод гипноза оказался очень эффективным. Мы проработали страх публичных выступлений, который мучил меня годами."</p>
-          <div class="flex items-center gap-4">
-            <div class="w-10 h-10 bg-brand-secondary rounded-full flex items-center justify-center text-brand-primary font-serif font-bold text-lg">А</div>
-            <span class="text-sm font-bold text-brand-primary">Алексей, топ-менеджер</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="flex gap-1 mb-6">
-            <svg width="14" height="14" fill="#BC6C25" stroke="#BC6C25" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="14" height="14" fill="#BC6C25" stroke="#BC6C25" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="14" height="14" fill="#BC6C25" stroke="#BC6C25" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="14" height="14" fill="#BC6C25" stroke="#BC6C25" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="14" height="14" fill="#BC6C25" stroke="#BC6C25" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <p class="text-stone-600 italic mb-8 leading-relaxed">"Очень бережный и профессиональный подход. Чувствуешь себя в полной безопасности с первой минуты."</p>
-          <div class="flex items-center gap-4">
-            <div class="w-10 h-10 bg-brand-secondary rounded-full flex items-center justify-center text-brand-primary font-serif font-bold text-lg">Е</div>
-            <span class="text-sm font-bold text-brand-primary">Елена, дизайнер</span>
-          </div>
+          <!-- Quiz content injected by script.js -->
+          <div id="quiz-content"></div>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════
        FAQ
-  ═══════════════════════════════════════════════════════════ -->
-  <section id="faq" class="py-32 bg-white">
-    <div class="max-w-3xl mx-auto px-6">
-      <div class="mb-16 text-center">
-        <span class="section-label">FAQ</span>
-        <h2 class="section-title">Ответы на частые вопросы</h2>
+  ═══════════════════════════════════════════════════════ -->
+  <section id="faq" class="py-24 bg-brand-secondary/40">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="max-w-xl mb-14">
+        <span class="section-label">Часто спрашивают</span>
+        <h2 class="section-title">Вопросы<br>и ответы</h2>
       </div>
 
-      <div class="space-y-2">
+      <div class="max-w-3xl space-y-4">
 
-        <div class="faq-item border-b border-stone-100">
-          <button class="faq-question w-full flex justify-between items-center py-6 text-left">
-            <h4 class="text-xl font-serif text-brand-primary transition-colors">Как проходит первая встреча?</h4>
-            <svg class="faq-icon text-brand-accent flex-shrink-0 transition-transform duration-300" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <!-- FAQ 1: Стоимость — first question -->
+        <div class="faq-item card cursor-pointer">
+          <button class="faq-question w-full flex items-center justify-between gap-4 text-left">
+            <h4 class="font-serif text-lg text-brand-primary">Сколько стоит сессия?</h4>
+            <svg class="faq-icon w-6 h-6 text-stone-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
-          <div class="faq-answer overflow-hidden max-h-0 opacity-0 transition-all duration-300">
-            <p class="text-stone-500 leading-relaxed pb-6">Это бесплатная 15-минутная онлайн-встреча. Мы знакомимся, вы кратко описываете свой запрос, а я рассказываю, как именно мой подход может помочь в вашей ситуации. Это ни к чему вас не обязывает.</p>
+          <div class="faq-answer">
+            <div class="pt-4 text-stone-500 leading-relaxed text-sm">
+              Актуальные цены указаны в <a href="#prices" class="text-brand-accent hover:underline">разделе «Стоимость»</a>. Первая знакомительная встреча (15 минут) — бесплатно. Доступны разовые сессии и выгодные пакеты из 4 или 8 сессий. По вопросам рассрочки и оплаты — напишите в мессенджер.
+            </div>
           </div>
         </div>
 
-        <div class="faq-item border-b border-stone-100">
-          <button class="faq-question w-full flex justify-between items-center py-6 text-left">
-            <h4 class="text-xl font-serif text-brand-primary transition-colors">Сколько сессий мне понадобится?</h4>
-            <svg class="faq-icon text-brand-accent flex-shrink-0 transition-transform duration-300" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <!-- FAQ 2 -->
+        <div class="faq-item card cursor-pointer">
+          <button class="faq-question w-full flex items-center justify-between gap-4 text-left">
+            <h4 class="font-serif text-lg text-brand-primary">Как проходят сессии онлайн?</h4>
+            <svg class="faq-icon w-6 h-6 text-stone-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
-          <div class="faq-answer overflow-hidden max-h-0 opacity-0 transition-all duration-300">
-            <p class="text-stone-500 leading-relaxed pb-6">Все индивидуально. Кому-то достаточно 1–2 встреч для решения точечного вопроса, но для глубокой трансформации и устойчивых изменений обычно требуется от 8 до 12 регулярных сессий.</p>
+          <div class="faq-answer">
+            <div class="pt-4 text-stone-500 leading-relaxed text-sm">
+              Сессии проводятся через Zoom в удобное для вас время. Для участия нужны тихое место, стабильный интернет и наушники. Онлайн-формат ничем не уступает очному — многие клиенты находят его даже более комфортным.
+            </div>
           </div>
         </div>
 
-        <div class="faq-item border-b border-stone-100">
-          <button class="faq-question w-full flex justify-between items-center py-6 text-left">
-            <h4 class="text-xl font-serif text-brand-primary transition-colors">Это конфиденциально?</h4>
-            <svg class="faq-icon text-brand-accent flex-shrink-0 transition-transform duration-300" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <!-- FAQ 3 -->
+        <div class="faq-item card cursor-pointer">
+          <button class="faq-question w-full flex items-center justify-between gap-4 text-left">
+            <h4 class="font-serif text-lg text-brand-primary">Гипноз — это безопасно?</h4>
+            <svg class="faq-icon w-6 h-6 text-stone-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
-          <div class="faq-answer overflow-hidden max-h-0 opacity-0 transition-all duration-300">
-            <p class="text-stone-500 leading-relaxed pb-6">Безусловно. Конфиденциальность — это фундамент психологической помощи. Все, что мы обсуждаем, остаётся строго между нами. Я следую этическому кодексу психолога.</p>
+          <div class="faq-answer">
+            <div class="pt-4 text-stone-500 leading-relaxed text-sm">
+              Да, абсолютно. Терапевтический гипноз — это состояние глубокого расслабления, похожее на медитацию. Вы остаётесь в полном сознании и контроле, слышите всё что происходит и можете выйти из этого состояния в любой момент. Никаких «трюков» — только мягкая работа с подсознанием.
+            </div>
           </div>
         </div>
 
-        <div class="faq-item border-b border-stone-100">
-          <button class="faq-question w-full flex justify-between items-center py-6 text-left">
-            <h4 class="text-xl font-serif text-brand-primary transition-colors">Работаете ли вы онлайн?</h4>
-            <svg class="faq-icon text-brand-accent flex-shrink-0 transition-transform duration-300" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <!-- FAQ 4 -->
+        <div class="faq-item card cursor-pointer">
+          <button class="faq-question w-full flex items-center justify-between gap-4 text-left">
+            <h4 class="font-serif text-lg text-brand-primary">Сколько сессий мне понадобится?</h4>
+            <svg class="faq-icon w-6 h-6 text-stone-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
-          <div class="faq-answer overflow-hidden max-h-0 opacity-0 transition-all duration-300">
-            <p class="text-stone-500 leading-relaxed pb-6">Да, я провожу сессии онлайн (Zoom, WhatsApp, Telegram) для клиентов по всему миру. Это так же эффективно, как очные встречи, и позволяет вам находиться в комфортной обстановке.</p>
+          <div class="faq-answer">
+            <div class="pt-4 text-stone-500 leading-relaxed text-sm">
+              Зависит от запроса и глубины темы. Многие клиенты замечают первые изменения уже после 1–2 сессий. Для устойчивого результата обычно достаточно 4–8 встреч. На первой сессии мы обсудим, что реалистично ожидать именно в вашем случае.
+            </div>
           </div>
         </div>
 
-        <div class="faq-item border-b border-stone-100">
-          <button class="faq-question w-full flex justify-between items-center py-6 text-left">
-            <h4 class="text-xl font-serif text-brand-primary transition-colors">Что такое гипнолог — это магия?</h4>
-            <svg class="faq-icon text-brand-accent flex-shrink-0 transition-transform duration-300" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <!-- FAQ 5 -->
+        <div class="faq-item card cursor-pointer">
+          <button class="faq-question w-full flex items-center justify-between gap-4 text-left">
+            <h4 class="font-serif text-lg text-brand-primary">Конфиденциально ли это?</h4>
+            <svg class="faq-icon w-6 h-6 text-stone-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </button>
-          <div class="faq-answer overflow-hidden max-h-0 opacity-0 transition-all duration-300">
-            <p class="text-stone-500 leading-relaxed pb-6">Гипнолог — специалист, использующий трансовые состояния для работы с подсознанием. Это научный метод, а не магия. Вы всегда остаётесь в сознании и контролируете процесс — просто ваше внимание направлено внутрь.</p>
+          <div class="faq-answer">
+            <div class="pt-4 text-stone-500 leading-relaxed text-sm">
+              Полностью. Всё, что происходит на сессии — остаётся между нами. Я соблюдаю профессиональный кодекс конфиденциальности и никогда не передаю информацию третьим лицам.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="faq-item card cursor-pointer">
+          <button class="faq-question w-full flex items-center justify-between gap-4 text-left">
+            <h4 class="font-serif text-lg text-brand-primary">Как записаться на первую встречу?</h4>
+            <svg class="faq-icon w-6 h-6 text-stone-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="pt-4 text-stone-500 leading-relaxed text-sm">
+              Напишите мне в WhatsApp, Telegram или Instagram — я отвечу в течение нескольких часов и предложу удобное время. Или заполните форму ниже. Первая знакомительная встреча — бесплатно и без обязательств.
+            </div>
           </div>
         </div>
 
@@ -529,154 +872,217 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════
        CONTACT
-  ═══════════════════════════════════════════════════════════ -->
-  <section id="contact" class="py-32 bg-brand-primary text-white relative overflow-hidden">
-    <div class="absolute top-0 right-0 w-1/2 h-full bg-white/5 blob-shape blur-3xl -rotate-12"></div>
+  ═══════════════════════════════════════════════════════ -->
+  <section id="contact" class="py-24 bg-brand-paper">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
 
-    <div class="max-w-7xl mx-auto px-6 relative z-10">
-      <div class="grid lg:grid-cols-2 gap-20 items-center">
-
-        <!-- Left: contacts -->
+        <!-- Left: heading + messenger links -->
         <div>
-          <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-accent mb-6 block">Сделайте первый шаг</span>
-          <h2 class="text-5xl md:text-7xl font-serif mb-12 leading-tight">
-            Готовы начать<br><span class="italic text-brand-accent">трансформацию?</span>
-          </h2>
+          <span class="section-label">Контакт</span>
+          <h2 class="section-title mb-6">Готовы начать<br>трансформацию?</h2>
+          <p class="text-stone-500 leading-relaxed mb-10">
+            Напишите в любой удобный мессенджер — я отвечу в течение нескольких часов и мы согласуем удобное время для знакомства.
+          </p>
 
-          <div class="space-y-8">
-            <a href="https://wa.me/32467810422" target="_blank" rel="noopener" class="flex items-center gap-6 group">
-              <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center group-hover:bg-brand-accent transition-colors">
-                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <div class="space-y-4">
+
+            <!-- WhatsApp -->
+            <a href="https://wa.me/32467810422" target="_blank" rel="noopener"
+               class="flex items-center gap-4 p-5 rounded-2xl bg-brand-secondary hover:bg-brand-accent group transition-all duration-300">
+              <div class="icon-box bg-white group-hover:bg-white/20 transition-all flex-shrink-0">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#25D366">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+                </svg>
               </div>
               <div>
-                <span class="text-[10px] font-bold uppercase tracking-widest text-stone-400 block mb-1">WhatsApp</span>
-                <span class="text-xl font-serif">+32 467 81 04 22</span>
+                <div class="text-xs font-bold uppercase tracking-widest text-stone-400 group-hover:text-white/70 transition-colors mb-0.5">WhatsApp</div>
+                <div class="font-bold text-brand-primary group-hover:text-white transition-colors">+32 467 810 422</div>
               </div>
             </a>
 
-            <a href="https://t.me/psyfusions" target="_blank" rel="noopener" class="flex items-center gap-6 group">
-              <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center group-hover:bg-brand-accent transition-colors">
-                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            <!-- Telegram -->
+            <a href="https://t.me/psyfusions" target="_blank" rel="noopener"
+               class="flex items-center gap-4 p-5 rounded-2xl bg-brand-secondary hover:bg-brand-accent group transition-all duration-300">
+              <div class="icon-box bg-white group-hover:bg-white/20 transition-all flex-shrink-0">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#229ED9">
+                  <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                </svg>
               </div>
               <div>
-                <span class="text-[10px] font-bold uppercase tracking-widest text-stone-400 block mb-1">Telegram</span>
-                <span class="text-xl font-serif">@psyfusions</span>
+                <div class="text-xs font-bold uppercase tracking-widest text-stone-400 group-hover:text-white/70 transition-colors mb-0.5">Telegram</div>
+                <div class="font-bold text-brand-primary group-hover:text-white transition-colors">@psyfusions</div>
               </div>
             </a>
 
-            <a href="https://instagram.com/psyfusions" target="_blank" rel="noopener" class="flex items-center gap-6 group">
-              <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center group-hover:bg-brand-accent transition-colors">
-                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            <!-- Instagram -->
+            <a href="https://instagram.com/psyfusions" target="_blank" rel="noopener"
+               class="flex items-center gap-4 p-5 rounded-2xl bg-brand-secondary hover:bg-brand-accent group transition-all duration-300">
+              <div class="icon-box bg-white group-hover:bg-white/20 transition-all flex-shrink-0">
+                <svg width="24" height="24" viewBox="0 0 24 24">
+                  <defs>
+                    <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                      <stop offset="0%" style="stop-color:#f09433"/>
+                      <stop offset="25%" style="stop-color:#e6683c"/>
+                      <stop offset="50%" style="stop-color:#dc2743"/>
+                      <stop offset="75%" style="stop-color:#cc2366"/>
+                      <stop offset="100%" style="stop-color:#bc1888"/>
+                    </linearGradient>
+                  </defs>
+                  <path fill="url(#ig-grad)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+                </svg>
               </div>
               <div>
-                <span class="text-[10px] font-bold uppercase tracking-widest text-stone-400 block mb-1">Instagram</span>
-                <span class="text-xl font-serif">@psyfusions</span>
+                <div class="text-xs font-bold uppercase tracking-widest text-stone-400 group-hover:text-white/70 transition-colors mb-0.5">Instagram</div>
+                <div class="font-bold text-brand-primary group-hover:text-white transition-colors">@psyfusions</div>
               </div>
             </a>
+
           </div>
         </div>
 
-        <!-- Right: form -->
-        <div class="bg-white p-10 md:p-12 rounded-[60px] text-brand-ink shadow-2xl">
-
-          <!-- Form -->
+        <!-- Right: form (white card) -->
+        <div class="card">
           <div id="contact-form-wrap">
-            <h3 class="text-3xl font-serif mb-8 text-brand-primary">Оставить заявку</h3>
-            <form id="contact-form" class="grid gap-6">
-              <div class="grid gap-2">
-                <label class="text-[10px] font-bold uppercase tracking-widest text-stone-400">Ваше имя</label>
-                <input name="name" type="text" required class="w-full p-4 bg-stone-50 rounded-xl outline-none border border-transparent focus:border-brand-accent transition-all" />
+            <h3 class="font-serif text-2xl text-brand-primary mb-2">Напишите мне</h3>
+            <p class="text-stone-400 text-sm mb-8">Я отвечу в течение нескольких часов</p>
+
+            <form id="contact-form" class="space-y-4">
+
+              <div>
+                <label class="text-[10px] font-bold uppercase tracking-widest text-stone-400 block mb-2">Имя *</label>
+                <input name="name" type="text" required placeholder="Ваше имя"
+                       class="w-full p-5 rounded-2xl border border-stone-100 bg-stone-50 focus:border-brand-accent focus:bg-white outline-none transition-all text-brand-ink" />
               </div>
-              <div class="grid gap-2">
-                <label class="text-[10px] font-bold uppercase tracking-widest text-stone-400">Телефон / Мессенджер</label>
-                <input name="contact" type="text" required class="w-full p-4 bg-stone-50 rounded-xl outline-none border border-transparent focus:border-brand-accent transition-all" />
+
+              <div>
+                <label class="text-[10px] font-bold uppercase tracking-widest text-stone-400 block mb-2">Телефон или Telegram *</label>
+                <input name="contact" type="text" required placeholder="+7 999 ... или @username"
+                       class="w-full p-5 rounded-2xl border border-stone-100 bg-stone-50 focus:border-brand-accent focus:bg-white outline-none transition-all text-brand-ink" />
               </div>
-              <div class="grid gap-2">
-                <label class="text-[10px] font-bold uppercase tracking-widest text-stone-400">Краткий запрос</label>
-                <textarea name="message" rows="3" class="w-full p-4 bg-stone-50 rounded-xl outline-none border border-transparent focus:border-brand-accent transition-all resize-none"></textarea>
+
+              <div>
+                <label class="text-[10px] font-bold uppercase tracking-widest text-stone-400 block mb-2">Сообщение (необязательно)</label>
+                <textarea name="message" rows="3" placeholder="С чем хотите поработать?"
+                          class="w-full p-5 rounded-2xl border border-stone-100 bg-stone-50 focus:border-brand-accent focus:bg-white outline-none transition-all text-brand-ink resize-none"></textarea>
               </div>
-              <button type="submit" class="w-full bg-brand-primary text-white py-6 rounded-2xl text-xs font-bold uppercase tracking-widest hover:bg-brand-accent transition-all shadow-xl mt-2">
-                Записаться на встречу
+
+              <button type="submit" class="btn-primary w-full text-center block">
+                Отправить сообщение
               </button>
+
+              <p class="text-stone-400 text-xs text-center">Нажимая кнопку, вы откроете чат WhatsApp</p>
+
             </form>
           </div>
 
           <!-- Success state -->
-          <div id="contact-success" class="hidden text-center py-10">
-            <div class="w-20 h-20 bg-brand-secondary rounded-full flex items-center justify-center mx-auto mb-8 text-brand-accent">
-              <svg width="40" height="40" fill="none" stroke="#BC6C25" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <div id="contact-success" style="display:none;" class="text-center py-8">
+            <div class="w-16 h-16 bg-brand-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg width="32" height="32" fill="none" stroke="#3D4435" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             </div>
-            <h3 class="text-3xl font-serif mb-4 text-brand-primary">Заявка принята!</h3>
-            <p class="text-stone-500 leading-relaxed mb-8">Спасибо за доверие. Оксана свяжется с вами в ближайшее время через указанный мессенджер.</p>
+            <h3 class="font-serif text-2xl text-brand-primary mb-3">Сообщение отправлено!</h3>
+            <p class="text-stone-500 text-sm leading-relaxed mb-6">Спасибо! Оксана свяжется с вами в ближайшее время.</p>
             <button onclick="resetContactForm()" class="text-xs font-bold uppercase tracking-widest text-brand-accent hover:underline">
-              Отправить ещё одну заявку
+              Написать ещё раз
             </button>
           </div>
-
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════
        FOOTER
-  ═══════════════════════════════════════════════════════════ -->
-  <footer class="py-12 bg-brand-paper border-t border-stone-100">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-      <div class="flex items-center gap-2">
-        <div class="w-8 h-8 bg-brand-primary rounded-lg flex items-center justify-center text-white font-serif text-lg">P</div>
-        <span class="text-lg font-serif tracking-tight text-brand-primary">PsyFusions</span>
-      </div>
-      <p class="text-[10px] text-stone-400 uppercase tracking-widest font-bold">
-        © 2024 Оксана Миру. Все права защищены.
-      </p>
-      <div class="flex gap-6">
-        <a href="https://instagram.com/psyfusions" target="_blank" rel="noopener" class="text-stone-400 hover:text-brand-accent transition-colors">
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-        </a>
-        <a href="https://t.me/psyfusions" target="_blank" rel="noopener" class="text-stone-400 hover:text-brand-accent transition-colors">
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-        </a>
-        <a href="https://wa.me/32467810422" target="_blank" rel="noopener" class="text-stone-400 hover:text-brand-accent transition-colors">
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </a>
+  ═══════════════════════════════════════════════════════ -->
+  <footer class="bg-brand-ink text-white py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+
+        <div>
+          <p class="font-serif text-xl mb-1">Оксана Миру</p>
+          <p class="text-white/40 text-xs uppercase tracking-widest">Психолог · Гипнолог</p>
+        </div>
+
+        <!-- Social icons -->
+        <div class="flex items-center gap-3">
+          <a href="https://wa.me/32467810422" target="_blank" rel="noopener"
+             class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all" aria-label="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          </a>
+          <a href="https://t.me/psyfusions" target="_blank" rel="noopener"
+             class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all" aria-label="Telegram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          </a>
+          <a href="https://instagram.com/psyfusions" target="_blank" rel="noopener"
+             class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          </a>
+        </div>
+
+        <p class="text-white/30 text-xs">© 2025 Оксана Миру. Все права защищены.</p>
+
       </div>
     </div>
   </footer>
 
-  <!-- ═══════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════
        FLOATING BUTTONS
-  ═══════════════════════════════════════════════════════════ -->
-  <div class="fixed bottom-8 right-8 z-50 flex flex-col gap-4">
-    <a href="https://t.me/psyfusions" target="_blank" rel="noopener"
-       class="w-14 h-14 bg-[#229ED9] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
-      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-    </a>
+  ═══════════════════════════════════════════════════════ -->
+  <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3 items-end">
+
+    <!-- Scroll to top (hidden initially) -->
     <button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"
-            style="opacity:0;pointer-events:none;transition:opacity 0.3s"
-            class="w-14 h-14 bg-white text-brand-primary rounded-full flex items-center justify-center shadow-2xl border border-stone-100 hover:scale-110 transition-transform">
-      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+            style="opacity:0; pointer-events:none; transition: opacity 0.3s;"
+            class="w-12 h-12 rounded-2xl bg-white border border-stone-200 shadow-lg flex items-center justify-center hover:bg-brand-secondary transition-colors"
+            aria-label="Наверх">
+      <svg width="18" height="18" fill="none" stroke="#3D4435" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
     </button>
+
+    <!-- Telegram floating -->
+    <a href="https://t.me/psyfusions" target="_blank" rel="noopener"
+       class="w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg hover:scale-110 transition-transform" style="background:#229ED9;" aria-label="Telegram">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+    </a>
+
+    <!-- WhatsApp floating -->
+    <a href="https://wa.me/32467810422" target="_blank" rel="noopener"
+       class="w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg hover:scale-110 transition-transform" style="background:#25D366;" aria-label="WhatsApp">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+    </a>
+
   </div>
 
-  <!-- ═══════════════════════════════════════════════════════════
-       QUIZ MODAL (opened from Hero CTA)
-  ═══════════════════════════════════════════════════════════ -->
-  <div id="quiz-modal" class="hidden fixed inset-0 z-[110] flex items-center justify-center p-6 bg-brand-primary/40 backdrop-blur-sm">
-    <div class="w-full max-w-2xl relative">
-      <button onclick="closeQuizModal()"
-              class="absolute -top-12 right-0 text-white hover:text-brand-accent transition-colors flex items-center gap-2 text-xs font-bold uppercase tracking-widest">
-        Закрыть
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-      <div class="bg-white rounded-[40px] p-8 md:p-12 shadow-2xl border border-stone-100 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-1 bg-brand-secondary">
-          <div id="quiz-modal-progress" class="h-full bg-brand-accent transition-all duration-500" style="width:0%"></div>
+  <!-- ═══════════════════════════════════════════════════════
+       QUIZ MODAL
+  ═══════════════════════════════════════════════════════ -->
+  <div id="quiz-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4" style="background:rgba(28,31,26,0.7); backdrop-filter:blur(6px);">
+    <div class="bg-brand-paper rounded-[40px] w-full max-w-lg max-h-[90vh] overflow-y-auto relative shadow-2xl">
+
+      <!-- Modal header -->
+      <div class="flex items-center justify-between p-8 pb-0">
+        <div>
+          <p class="text-[10px] font-bold uppercase tracking-widest text-brand-accent mb-1">Диагностика</p>
+          <h3 class="font-serif text-brand-primary text-lg">Проверьте уровень тревожности</h3>
         </div>
-        <div id="quiz-modal-content"></div>
+        <button onclick="closeQuizModal()" class="w-10 h-10 rounded-xl bg-brand-secondary flex items-center justify-center hover:bg-stone-200 transition-all flex-shrink-0 ml-4" aria-label="Закрыть">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
       </div>
+
+      <!-- Progress bar -->
+      <div class="px-8 pt-6">
+        <div class="w-full bg-stone-100 rounded-full h-1 overflow-hidden">
+          <div id="quiz-modal-progress" class="bg-brand-accent h-1 rounded-full transition-all duration-500" style="width:0%"></div>
+        </div>
+      </div>
+
+      <!-- Quiz content injected by script.js -->
+      <div id="quiz-modal-content" class="p-8"></div>
+
     </div>
   </div>
 
