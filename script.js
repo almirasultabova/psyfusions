@@ -321,7 +321,7 @@ function initScrollToTop() {
 function revealVisible() {
   document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
     const r = el.getBoundingClientRect();
-    if (r.top < window.innerHeight && r.bottom > 0) {
+    if (r.top < window.innerHeight + 100 && r.bottom > 0) {
       el.classList.add('visible');
     }
   });
@@ -339,8 +339,14 @@ function initScrollReveal() {
     });
   }, { threshold: 0, rootMargin: '0px' });
   els.forEach(el => observer.observe(el));
-  // Fallback: показать элементы уже в viewport после загрузки всех стилей
-  setTimeout(revealVisible, 300);
+
+  // Fallback: запускаем после загрузки всех ресурсов (включая Tailwind CDN)
+  window.addEventListener('load', () => {
+    revealVisible();
+    // Также вешаем scroll-слушатель на случай если observer не сработал
+    window.addEventListener('scroll', revealVisible, { passive: true });
+  });
+  setTimeout(revealVisible, 500);
 }
 
 // ─── Параллакс фоновых блобов ─────────────────────────────────
