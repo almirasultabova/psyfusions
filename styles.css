@@ -151,14 +151,16 @@ body { -webkit-font-smoothing: antialiased; }
 }
 .animate-pulse { animation: pulse 2s ease-in-out infinite; }
 
-/* Scroll reveal */
+/* Scroll reveal — анимация включается только если JS добавил класс js-reveal на body */
 .reveal {
-  opacity: 0;
-  transform: translateY(40px);
   transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1),
               transform 0.7s cubic-bezier(0.22,1,0.36,1);
 }
-.reveal.visible {
+.js-reveal .reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}
+.js-reveal .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }

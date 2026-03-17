@@ -330,6 +330,10 @@ function revealVisible() {
 function initScrollReveal() {
   const els = document.querySelectorAll('.reveal');
   if (!els.length) return;
+
+  // Включаем CSS-скрытие только после того как JS готов управлять анимацией
+  document.body.classList.add('js-reveal');
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -340,10 +344,9 @@ function initScrollReveal() {
   }, { threshold: 0, rootMargin: '0px' });
   els.forEach(el => observer.observe(el));
 
-  // Fallback: запускаем после загрузки всех ресурсов (включая Tailwind CDN)
+  // Fallback после загрузки всех ресурсов (включая Tailwind CDN)
   window.addEventListener('load', () => {
     revealVisible();
-    // Также вешаем scroll-слушатель на случай если observer не сработал
     window.addEventListener('scroll', revealVisible, { passive: true });
   });
   setTimeout(revealVisible, 500);
