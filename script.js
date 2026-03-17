@@ -215,9 +215,9 @@ function initNavbar() {
       navbar.style.paddingTop = '1rem';
       navbar.style.paddingBottom = '1rem';
     } else {
-      navbar.style.background = 'transparent';
-      navbar.style.backdropFilter = '';
-      navbar.style.boxShadow = '';
+      navbar.style.background = 'rgba(253,252,249,0.92)';
+      navbar.style.backdropFilter = 'blur(12px)';
+      navbar.style.boxShadow = '0 1px 8px rgba(0,0,0,0.04)';
       navbar.style.paddingTop = '2rem';
       navbar.style.paddingBottom = '2rem';
     }
