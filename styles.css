@@ -2,6 +2,17 @@
    Кастомные стили, не покрытые Tailwind.
    Цвета определены в tailwind.config в index.html. */
 
+/* ─── Бегущая строка ──────────────────────────────────────── */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.ticker-track {
+  display: inline-flex;
+  animation: ticker 30s linear infinite;
+}
+.ticker-track:hover { animation-play-state: paused; }
+
 /* ─── Глобальное ──────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
