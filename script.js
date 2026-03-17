@@ -317,6 +317,57 @@ function initScrollToTop() {
   });
 }
 
+// ─── Scroll Reveal ────────────────────────────────────────────
+function initScrollReveal() {
+  const els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => observer.observe(el));
+}
+
+// ─── Параллакс фоновых блобов ─────────────────────────────────
+function initParallax() {
+  const blobs = document.querySelectorAll('.parallax-blob');
+  if (!blobs.length) return;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    blobs.forEach((blob, i) => {
+      const speed = i % 2 === 0 ? 0.15 : 0.08;
+      blob.style.transform = `translateY(${y * speed}px)`;
+    });
+  }, { passive: true });
+}
+
+// ─── Счётчики цифр ────────────────────────────────────────────
+function initCounters() {
+  const counters = document.querySelectorAll('.count-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el  = e.target;
+      const end = parseInt(el.dataset.target, 10);
+      const dur = 1800;
+      const step = 16;
+      const inc  = end / (dur / step);
+      let   cur  = 0;
+      const timer = setInterval(() => {
+        cur += inc;
+        if (cur >= end) { cur = end; clearInterval(timer); }
+        el.textContent = Math.floor(cur) + (el.dataset.suffix || '');
+      }, step);
+      observer.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(el => observer.observe(el));
+}
+
 // ─── Init ─────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
@@ -324,6 +375,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initFAQ();
   initContactForm();
   initScrollToTop();
+  initScrollReveal();
+  initParallax();
+  initCounters();
 
   // Inline quiz (в секции #diagnosis)
   const quizContainer = document.getElementById('quiz-content');
