@@ -318,6 +318,15 @@ function initScrollToTop() {
 }
 
 // ─── Scroll Reveal ────────────────────────────────────────────
+function revealVisible() {
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) {
+      el.classList.add('visible');
+    }
+  });
+}
+
 function initScrollReveal() {
   const els = document.querySelectorAll('.reveal');
   if (!els.length) return;
@@ -328,8 +337,10 @@ function initScrollReveal() {
         observer.unobserve(e.target);
       }
     });
-  }, { threshold: 0.05, rootMargin: '0px 0px 0px 0px' });
+  }, { threshold: 0, rootMargin: '0px' });
   els.forEach(el => observer.observe(el));
+  // Fallback: показать элементы уже в viewport после загрузки всех стилей
+  setTimeout(revealVisible, 300);
 }
 
 // ─── Параллакс фоновых блобов ─────────────────────────────────
