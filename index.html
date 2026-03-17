@@ -89,49 +89,66 @@
     <div class="absolute top-[-10%] right-[-5%] w-[55%] h-[80%] bg-brand-secondary/60 blob-shape blur-3xl z-0"></div>
     <div class="absolute bottom-[-10%] left-[-5%] w-[40%] h-[60%] bg-brand-accent/5 blob-shape blur-3xl z-0"></div>
 
-    <div class="max-w-5xl mx-auto px-6 relative z-10">
-      <div class="flex items-center gap-4 mb-8">
-        <div class="w-12 h-[1px] bg-brand-accent"></div>
-        <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-brand-accent">Оксана Миру • Психолог • Гипнолог</span>
-      </div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
 
-      <h1 class="text-5xl md:text-8xl font-serif font-light leading-[0.95] text-brand-primary mb-10">
-        Оксана Миру,<br>
-        <span class="italic text-brand-accent">Психолог и гипнолог</span>
-      </h1>
+        <!-- Text -->
+        <div>
+          <div class="flex items-center gap-4 mb-8">
+            <div class="w-12 h-[1px] bg-brand-accent"></div>
+            <span class="text-[10px] font-bold uppercase tracking-[0.4em] text-brand-accent">Оксана Миру • Психолог • Гипнолог</span>
+          </div>
 
-      <p class="text-xl text-stone-600 mb-12 leading-relaxed max-w-2xl">
-        Практикующий психолог в Европе и Азии. Помогаю экспертам и предпринимателям выйти из состояния тревоги и выгорания к устойчивому спокойствию через работу с подсознанием.
-      </p>
+          <h1 class="text-5xl md:text-7xl font-serif font-light leading-[0.95] text-brand-primary mb-10">
+            Оксана Миру,<br>
+            <span class="italic text-brand-accent">Психолог и гипнолог</span>
+          </h1>
 
-      <!-- Stats -->
-      <div class="flex flex-wrap gap-8 mb-12">
-        <div class="flex items-center gap-3">
-          <div class="text-3xl font-serif text-brand-primary">500+</div>
-          <div class="text-[10px] text-stone-400 uppercase tracking-widest leading-tight font-bold">Часов<br>практики</div>
+          <p class="text-xl text-stone-600 mb-12 leading-relaxed">
+            Практикующий психолог в Европе и Азии. Помогаю экспертам и предпринимателям выйти из состояния тревоги и выгорания к устойчивому спокойствию через работу с подсознанием.
+          </p>
+
+          <!-- Stats -->
+          <div class="flex flex-wrap gap-8 mb-12">
+            <div class="flex items-center gap-3">
+              <div class="text-3xl font-serif text-brand-primary">500+</div>
+              <div class="text-[10px] text-stone-400 uppercase tracking-widest leading-tight font-bold">Часов<br>практики</div>
+            </div>
+            <div class="w-[1px] h-10 bg-stone-200"></div>
+            <div class="flex items-center gap-3">
+              <div class="text-3xl font-serif text-brand-primary">100%</div>
+              <div class="text-[10px] text-stone-400 uppercase tracking-widest leading-tight font-bold">Конфиден-<br>циальность</div>
+            </div>
+          </div>
+
+          <!-- CTA buttons -->
+          <div class="flex flex-col sm:flex-row gap-4">
+            <button onclick="openQuizModal()" class="btn-primary flex items-center justify-center gap-3">
+              Пройти диагностику тревожности
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </button>
+            <a href="#contact" class="btn-secondary flex items-center justify-center gap-3">
+              Бесплатная встреча (15 мин)
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+          <p class="mt-8 text-[10px] text-stone-400 uppercase tracking-widest font-bold">
+            <span class="text-brand-accent">●</span> Осталось 2 места на этой неделе
+          </p>
         </div>
-        <div class="w-[1px] h-10 bg-stone-200"></div>
-        <div class="flex items-center gap-3">
-          <div class="text-3xl font-serif text-brand-primary">100%</div>
-          <div class="text-[10px] text-stone-400 uppercase tracking-widest leading-tight font-bold">Конфиден-<br>циальность</div>
+
+        <!-- Photo -->
+        <div class="relative hidden lg:block">
+          <div class="absolute inset-0 bg-brand-secondary blob-shape translate-x-6 translate-y-6 -z-10"></div>
+          <img
+            src="assets/images/oksana.png"
+            alt="Оксана Миру — психолог и гипнолог"
+            class="w-full max-w-md mx-auto object-cover rounded-[60px] shadow-2xl"
+          />
         </div>
-      </div>
 
-      <!-- CTA buttons -->
-      <div class="flex flex-col sm:flex-row gap-4">
-        <button onclick="openQuizModal()" class="btn-primary flex items-center justify-center gap-3">
-          Пройти диагностику тревожности
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        </button>
-        <a href="#contact" class="btn-secondary flex items-center justify-center gap-3">
-          Бесплатная встреча (15 мин)
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
       </div>
-
-      <p class="mt-8 text-[10px] text-stone-400 uppercase tracking-widest font-bold">
-        <span class="text-brand-accent">●</span> Осталось 2 места на этой неделе
-      </p>
     </div>
   </section>
 
@@ -277,11 +294,25 @@
        ABOUT
   ═══════════════════════════════════════════════════════════ -->
   <section id="about" class="py-32 bg-brand-paper">
-    <div class="max-w-4xl mx-auto px-6">
-      <div class="mb-12">
-        <span class="section-label">Обо мне</span>
-        <h2 class="section-title">Оксана Миру</h2>
-      </div>
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Photo -->
+        <div class="relative">
+          <div class="absolute inset-0 bg-brand-secondary/60 blob-shape -translate-x-4 translate-y-4 -z-10"></div>
+          <img
+            src="assets/images/oksana.png"
+            alt="Оксана Миру — психолог и гипнолог"
+            class="w-full max-w-sm mx-auto object-cover rounded-[60px] shadow-xl"
+          />
+        </div>
+
+        <!-- Text -->
+        <div>
+          <div class="mb-12">
+            <span class="section-label">Обо мне</span>
+            <h2 class="section-title">Оксана Миру</h2>
+          </div>
 
       <div class="space-y-8 text-stone-600 leading-relaxed">
         <p class="text-2xl font-serif text-brand-primary">
@@ -319,6 +350,8 @@
           «Моя задача — создать безопасное пространство, где человек может понять причины своего состояния и найти внутренние ресурсы для изменений».
         </blockquote>
       </div>
+        </div><!-- end text -->
+      </div><!-- end grid -->
     </div>
   </section>
 
